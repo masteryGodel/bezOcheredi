@@ -1,0 +1,14 @@
+version: "3"
+services:
+  database:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_DATABASE: bezOcheredi
+      POSTGRES_USER: bezOcheredi
+      POSTGRES_PASSWORD: bezOcheredi
+    ports:
+      - 54320:5432
+    volumes:
+      - db-data:/var/lib/postgresql/data
+volumes:
+  db-data:
