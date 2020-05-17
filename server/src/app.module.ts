@@ -1,16 +1,20 @@
 import { Module } from '@nestjs/common';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { GraphQLModule } from '@nestjs/graphql';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { DateScalar } from './shared/date.scalar';
+import { ApiModule } from './api.module';
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', '..', 'client', 'dist', 'client'),
+    TypeOrmModule.forRoot(),
+    GraphQLModule.forRoot({
+      typePaths: ['./**/*.graphql'],
+      context: ({ req }) => ({ headers: req.headers }),
     }),
+    ApiModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [DateScalar],
 })
 export class AppModule {}
