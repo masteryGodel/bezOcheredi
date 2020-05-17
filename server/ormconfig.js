@@ -8,7 +8,7 @@ module.exports = {
   username: process.env.DATABASE_USERNAME || 'bezOcheredi',
   password: process.env.DATABASE_PASSWORD || 'bezOcheredi',
   database: process.env.DATABASE_NAME || 'bezOcheredi',
-  synchronize: true,
+  synchronize: process.env.NODE_ENV === 'development',
   dropSchema: false,
   logging: true,
   entities: ['dist/**/*.entity.js'],
