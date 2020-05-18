@@ -40,6 +40,10 @@ services:
       - webnet
     env_file:
       - .env
+    environment:
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_DB=${DATABASE_NAME}
     ports:
       - 5432:5432
     volumes:

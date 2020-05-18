@@ -11,7 +11,6 @@ interface User {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-
 export class AppComponent implements OnInit {
   users: User[] = [];
 
@@ -29,8 +28,8 @@ export class AppComponent implements OnInit {
         `,
       })
       .valueChanges.subscribe((result) => {
-      // @ts-ignore
-      this.users = result.data && result.data.users;
+        // @ts-ignore
+        this.users = result.data && result.data.users;
       });
   }
 }
