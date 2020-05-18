@@ -10,7 +10,7 @@ services:
       - ./server/:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - 3000:3000
+      - ${SERVER_PORT}:${SERVER_PORT}
     command: yarn start:dev
     env_file:
       - .env
@@ -25,11 +25,13 @@ services:
       context: ./client/
       target: development
     command: yarn start
+    env_file:
+      - .env
     volumes:
       - ./client/:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - "4201:4201"
+      - ${CLIENT_PORT}:${CLIENT_PORT}
     networks:
       - webnet
 
@@ -45,7 +47,7 @@ services:
       - POSTGRES_USER=${DATABASE_USERNAME}
       - POSTGRES_DB=${DATABASE_NAME}
     ports:
-      - 5432:5432
+      - ${DB_PORT}:${DB_PORT}
     volumes:
       - pgdata:/var/lib/postgresql/data
 networks:
