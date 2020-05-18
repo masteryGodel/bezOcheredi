@@ -15,5 +15,4 @@ export class UserRO {
   username: string;
   created: Date;
   token?: string;
-  role: ROLES;
 }
