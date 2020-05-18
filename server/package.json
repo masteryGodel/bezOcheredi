@@ -1,5 +1,5 @@
 {
-  "name": "bez-cheredi",
+  "name": "bez-ocheredi",
   "version": "0.0.1",
   "scripts": {
     "prebuild": "rimraf dist",
