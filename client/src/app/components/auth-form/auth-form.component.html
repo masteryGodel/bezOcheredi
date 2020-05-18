@@ -1,0 +1,12 @@
+<div class="background">
+    <div class="modal">
+        <form novalidate  class="form-control" [formGroup]="userForm">
+            <label for="login"><input id="login" type="text" formControlName="login"></label>
+            <label for="password"><input id="password" type="password" formControlName="password"></label>
+            <div class='buttons-group'>
+                <button (click)="submit()" [disabled]="userForm.invalid">Submit</button>
+                <button>Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
