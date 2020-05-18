@@ -14,6 +14,6 @@ docker-compose up
 
 ### Build & Run
 
-````bash
+```bash
 docker-compose up --build
-````
+```
