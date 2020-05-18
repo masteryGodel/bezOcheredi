@@ -1,3 +1,4 @@
+import { ROLES } from '../enums/roles';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -27,6 +28,9 @@ export class UserEntity {
   @Column('text')
   password: string;
 
+  @Column({ type: 'integer', default: ROLES.CLIENT })
+  role: ROLES;
+
   @BeforeInsert()
   async hashPassword() {
     this.password = await bcrypt.hash(this.password, 10);
@@ -37,11 +41,12 @@ export class UserEntity {
   }
 
   toResponseObject(showToken: boolean = true): UserRO {
-    const { id, created, username, token } = this;
+    const { id, created, username, token, role } = this;
     const responseObject: UserRO = {
       id,
       created,
       username,
+      role,
     };
 
     if (showToken) {
@@ -52,12 +57,13 @@ export class UserEntity {
   }
 
   private get token(): string {
-    const { id, username } = this;
+    const { id, username, role } = this;
 
     return jwt.sign(
       {
         id,
         username,
+        role,
       },
       process.env.SECRET,
       { expiresIn: '7d' },

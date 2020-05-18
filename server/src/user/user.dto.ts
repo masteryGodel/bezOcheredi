@@ -1,4 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
+import { ROLES } from 'src/enums/roles';
 
 export class UserDTO {
   @IsNotEmpty()
@@ -6,6 +7,7 @@ export class UserDTO {
 
   @IsNotEmpty()
   password: string;
+  role?: ROLES;
 }
 
 export class UserRO {
@@ -13,4 +15,5 @@ export class UserRO {
   username: string;
   created: Date;
   token?: string;
+  role: ROLES;
 }

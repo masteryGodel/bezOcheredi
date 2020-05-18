@@ -2,11 +2,13 @@ type User {
   id: ID!
   username: String!
   created: Date!
+  role: Int!
 }
 
 type Auth {
   username: String!
   token: String!
+  role: Int!
 }
 
 type Query {
@@ -17,5 +19,5 @@ type Query {
 
 type Mutation {
   login(username: String!, password: String!): Auth
-  register(username: String!, password: String!): Auth
+  register(username: String!, password: String!, role: Int!): Auth
 }
