@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { TranslateService } from '@ngx-translate/core';
+
 
 interface User {
   username?: string;
@@ -13,8 +15,7 @@ interface User {
 })
 export class AppComponent implements OnInit {
   users: User[] = [];
-
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo, public translate: TranslateService) {}
 
   ngOnInit() {
     this.apollo

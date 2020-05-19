@@ -2,7 +2,7 @@ FROM node:14-alpine As development
 WORKDIR /usr/src/app
 COPY package*.json ./
 COPY yarn.lock ./
-RUN yarn install --only=development
+RUN yarn install
 COPY . .
 RUN yarn build
 
