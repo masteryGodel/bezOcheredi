@@ -3,12 +3,14 @@
 </h1>
 <button
   (click)="translate.use('ru')"
+  mat-button color="primary"
   [ngClass]="{ active: translate.currentLang === 'ru' }"
 >
   RU
 </button>
 <button
   (click)="translate.use('en')"
+  mat-button color="primary"
   [ngClass]="{ active: translate.currentLang === 'en' }"
 >
   EN
@@ -19,3 +21,4 @@
     <p>{{ user.username }}</p>
   </div>
 </div>
+

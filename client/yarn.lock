@@ -122,6 +122,13 @@
   resolved "http://84.201.137.246:4873/@angular%2fanimations/-/animations-9.1.7.tgz#09bf7c84c234d8b6ecaa101024a3b3e69ab198cd"
   integrity sha512-1wW8ndGMLDuE2LpTN2RNRz1Dt7JgVBeVmOPMgzoA7g1uuvm+jESTrGG7W3BzLzG0BE2TeXt0fY90o4iU+S2Rmg==
 
+"@angular/cdk@~9.2.1":
+  version "9.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-9.2.4.tgz#8413958bd275e4c34be3b96f56444671dd30ba93"
+  integrity sha512-iw2+qHMXHYVC6K/fttHeNHIieSKiTEodVutZoOEcBu9rmRTGbLB26V/CRsfIRmA1RBk+uFYWc6UQZnMC3RdnJQ==
+  optionalDependencies:
+    parse5 "^5.0.0"
+
 "@angular/cli@~9.1.6":
   version "9.1.6"
   resolved "http://84.201.137.246:4873/@angular%2fcli/-/cli-9.1.6.tgz#9622745d3fdf73b3045048e7df6c44f5aa8e97f5"
@@ -185,6 +192,11 @@
   version "9.1.7"
   resolved "http://84.201.137.246:4873/@angular%2fforms/-/forms-9.1.7.tgz#cdefbc7c7093fd37b417975f18b875a798cbd2d9"
   integrity sha512-/bRs5hSFDUjOrq2vw11HoS25oEu7KYVxPbQiEjeBHJo82yDmSO+1cVukh6ulDi7iv1sJwSzikDtE9+xDx1ocfQ==
+
+"@angular/material@~9.2.1":
+  version "9.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-9.2.4.tgz#2666ef606fbb88d60f8e2f18c5e4f94a3dd572d8"
+  integrity sha512-LkoTXE6B0slvMhvfZDdPWaz4yaYLkaAp5VSPunI9pxGsPxzqEV9e210wC1/sjG/76Nk8Ep7/2z9XKac8Q9bMwA==
 
 "@angular/platform-browser-dynamic@~9.1.7":
   version "9.1.7"
@@ -1000,14 +1012,14 @@
     rxjs "6.5.4"
     webpack-sources "1.4.3"
 
-"@ngx-translate/core@^12.1.2":
+"@ngx-translate/core@~12.1.2":
   version "12.1.2"
-  resolved "http://84.201.137.246:4873/@ngx-translate%2fcore/-/core-12.1.2.tgz#0c6f24249953a79cfc2d581b2cd1b5d6d338d9db"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-12.1.2.tgz#0c6f24249953a79cfc2d581b2cd1b5d6d338d9db"
   integrity sha512-ZudJsqIxTKlLmPoqK8gJY3UpMGujR0Xm7HfXL6AR79yGRS23QqpjAhMfx4v5qUCcHMmQ9/78bW8QJLfp31c7vQ==
 
-"@ngx-translate/http-loader@^4.0.0":
+"@ngx-translate/http-loader@~4.0.0":
   version "4.0.0"
-  resolved "http://84.201.137.246:4873/@ngx-translate%2fhttp-loader/-/http-loader-4.0.0.tgz#8a555248ad4b7d513460fcec9da25b0447962f1d"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/http-loader/-/http-loader-4.0.0.tgz#8a555248ad4b7d513460fcec9da25b0447962f1d"
   integrity sha512-x8LumqydWD7eX9yQTAVeoCM9gFUIGVTUjZqbxdAUavAA3qVnk9wCQux7iHLPXpydl8vyQmLoPQR+fFU+DUDOMA==
   dependencies:
     tslib "^1.9.0"
@@ -6210,6 +6222,11 @@ parse5@4.0.0:
   version "4.0.0"
   resolved "http://84.201.137.246:4873/parse5/-/parse5-4.0.0.tgz#6d78656e3da8d78b4ec0b906f7c08ef1dfe3f608"
   integrity sha512-VrZ7eOd3T1Fk4XWNXMgiGBK/z0MG48BWG2uQNU4I72fkQuKUTZpl+u9k+CxEG0twMVzSmXEEz12z5Fnw1jIQFA==
+
+parse5@^5.0.0:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
+  integrity sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==
 
 parseqs@0.0.5:
   version "0.0.5"
