@@ -1,5 +1,7 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EmailValidator } from './../../validators/email-correct.validator';
 
 @Component({
   selector: 'app-auth-form',
@@ -10,8 +12,9 @@ export class AuthFormComponent implements OnInit {
   public login: FormControl;
   public password: FormControl;
   public userForm: FormGroup;
+  public hide = true;
 
-  constructor() { }
+  constructor(public translate: TranslateService) { }
 
   ngOnInit(): void {
     this.createFormsField();
@@ -22,7 +25,7 @@ export class AuthFormComponent implements OnInit {
   }
 
   private createFormsField() {
-    this.login = new FormControl('', [Validators.required, Validators.email]);
+    this.login = new FormControl('', [Validators.required, EmailValidator.emailValidator]);
     this.password = new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(32)]);
   }
   private createFormGroup() {
