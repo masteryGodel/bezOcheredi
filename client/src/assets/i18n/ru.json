@@ -1,4 +1,5 @@
 {
   "app.app.title": "Привет {{value}}",
-  "app.app.value": "мир"
+  "app.app.value": "мир",
+  "app.card.button": "забронировать"
 }

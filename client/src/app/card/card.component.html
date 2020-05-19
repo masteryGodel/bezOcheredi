@@ -1,0 +1,15 @@
+<mat-card class="app-card">
+  <mat-card-header>
+    <div mat-card-avatar class="app-card-logo"></div>
+    <mat-card-title>{{ card.title }}</mat-card-title>
+    <mat-card-subtitle>{{ card.category }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ card.description }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">
+      {{ "app.card.button" | translate | uppercase}}
+    </button>
+  </mat-card-actions>
+</mat-card>

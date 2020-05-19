@@ -1,4 +1,5 @@
 {
   "app.app.title": "hello {{value}}",
-  "app.app.value": "world"
+  "app.app.value": "world",
+  "app.card.button": "book"
 }
