@@ -1,0 +1,4 @@
+{
+  "app.app.title": "Привет {{value}}",
+  "app.app.value": "мир"
+}

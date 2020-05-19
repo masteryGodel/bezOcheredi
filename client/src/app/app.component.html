@@ -1,3 +1,19 @@
+<h1>
+  {{ "app.app.title" | translate: { value: "app.app.value" | translate } }}
+</h1>
+<button
+  (click)="translate.use('ru')"
+  [ngClass]="{ active: translate.currentLang === 'ru' }"
+>
+  RU
+</button>
+<button
+  (click)="translate.use('en')"
+  [ngClass]="{ active: translate.currentLang === 'en' }"
+>
+  EN
+</button>
+
 <div *ngIf="users">
   <div *ngFor="let user of users">
     <p>{{ user.username }}</p>

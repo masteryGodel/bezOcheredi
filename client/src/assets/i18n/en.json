@@ -1,0 +1,4 @@
+{
+  "app.app.title": "hello {{value}}",
+  "app.app.value": "world"
+}
