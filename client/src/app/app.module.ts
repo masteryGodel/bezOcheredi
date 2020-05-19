@@ -10,6 +10,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GraphQLModule } from './graphql.module';
+import { HomeComponent } from './pages/home/home.component';
+import { ClientComponent } from './pages/client/client.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { CompanyComponent } from './pages/company/company.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -17,7 +21,13 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ClientComponent,
+    AdminComponent,
+    CompanyComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,7 +43,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     BrowserAnimationsModule,
     MatButtonModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent],
