@@ -2,36 +2,36 @@
     <div class="modal">
         <form novalidate  class="form-control example-form" [formGroup]="userForm">
           <mat-form-field class="example-full-width form-field">
-            <mat-label>Email</mat-label>
+            <mat-label>{{ "app.auth-form.email-placeholder" | translate }}</mat-label>
             <input matInput [formControl]="login" placeholder="Ex. pat@example.com">
             <mat-error *ngIf="login.hasError('emailValidator') && !login.hasError('required')">
-              Please enter a valid email address
+              {{ "app.auth-form.email-error-message" | translate }}
             </mat-error>
             <mat-error *ngIf="login.hasError('required')">
-              Email is <strong>required</strong>
+              {{ "app.auth-form.email-required-error-message" | translate }}
             </mat-error>
           </mat-form-field>
 
           <mat-form-field >
-            <mat-label>Enter your password</mat-label>
+            <mat-label>{{ "app.auth-form.password-placeholder" | translate }}</mat-label>
             <input [formControl]="password" matInput [type]="hide ? 'password' : 'text'">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
             <mat-error *ngIf="password.hasError('minlength') && !password.hasError('required')">
-              Password must be at least {{password.errors['minlength'].requiredLength}} characters
+              {{ "app.auth-form.password-min-length-error-message" | translate: {count: password.errors['minlength'].requiredLength } }}
             </mat-error>
             <mat-error *ngIf="password.hasError('maxlength') && !password.hasError('required')">
-              Password must be at least {{password.errors['maxlength'].requiredLength}} characters
+              {{ "app.auth-form.password-max-length-error-message" | translate: {count: password.errors['maxlength'].requiredLength } }}
             </mat-error>
             <mat-error *ngIf="password.hasError('required')">
-              Password is <strong>required</strong>
+              {{ "app.auth-form.password-required-error-message" | translate }}
             </mat-error>
           </mat-form-field>
 
             <div class='buttons-group'>
-              <button (click)="submit()" mat-raised-button color="accent">Submit</button>
-              <button mat-stroked-button color="warn">Cancel</button>
+              <button (click)="submit()" mat-raised-button color="accent"> {{ "app.auth-form.submit" | translate }}</button>
+              <button mat-stroked-button color="warn">{{ "app.auth-form.cancel" | translate }} </button>
             </div>
         </form>
     </div>
