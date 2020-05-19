@@ -12,10 +12,11 @@ import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '../shared/auth.gaurd';
 import { UserService } from './user.service';
 import { UserDTO } from './user.dto';
+import { ROLES } from 'src/enums/roles';
 
 @Resolver()
 export class UserResolver {
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   @Query()
   async users(@Args('page') page: number) {
@@ -47,8 +48,9 @@ export class UserResolver {
   async register(
     @Args('username') username: string,
     @Args('password') password: string,
+    @Args('role') role: number,
   ) {
-    const user: UserDTO = { username, password };
+    const user: UserDTO = { username, password, role };
     return await this.userService.register(user);
   }
 }
