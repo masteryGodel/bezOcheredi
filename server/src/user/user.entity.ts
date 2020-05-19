@@ -28,7 +28,7 @@ export class UserEntity {
   @Column('text')
   password: string;
 
-  @Column({ type: 'integer', default: ROLES.CLIENT })
+  @Column({ type: 'enum', enum: ROLES, default: ROLES.CLIENT })
   role: ROLES;
 
   @BeforeInsert()

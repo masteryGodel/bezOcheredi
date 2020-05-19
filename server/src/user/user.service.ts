@@ -4,13 +4,14 @@ import { Repository } from 'typeorm';
 
 import { UserEntity } from './user.entity';
 import { UserDTO } from './user.dto';
+import { ROLES } from 'src/enums/roles';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
-  ) {}
+  ) { }
 
   async showAll(page: number = 1) {
     const users = await this.userRepository.find({
@@ -40,7 +41,10 @@ export class UserService {
   }
 
   async register(data: UserDTO) {
-    const { username } = data;
+    const { username, role } = data;
+    if (role === ROLES.ADMIN) {
+      throw new HttpException('Permission denied', HttpStatus.UNAUTHORIZED)
+    }
     let user = await this.userRepository.findOne({ where: { username } });
     if (user) {
       throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
