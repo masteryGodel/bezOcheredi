@@ -1,4 +1,6 @@
-<h1>{{ "HELLO" | translate: { value: "WORLD" | translate } }}</h1>
+<h1>
+  {{ "app.app.title" | translate: { value: "app.app.value" | translate } }}
+</h1>
 <button
   (click)="translate.use('ru')"
   [ngClass]="{ active: translate.currentLang === 'ru' }"

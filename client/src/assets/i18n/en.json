@@ -1,4 +1,4 @@
 {
-  "HELLO": "hello {{value}}",
-  "WORLD": "world"
+  "app.app.title": "hello {{value}}",
+  "app.app.value": "world"
 }
