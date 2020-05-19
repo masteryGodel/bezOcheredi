@@ -1,0 +1,17 @@
+<mat-toolbar class="app-header"> 
+    {{ "app.app.title" | translate: { value: "app.app.value" | translate } }}
+    <button
+        (click)="translate.use('ru')"
+        mat-button color="primary"
+        [ngClass]="{ active: translate.currentLang === 'ru' }"
+    >
+        RU
+    </button>
+    <button
+        (click)="translate.use('en')"
+        mat-button color="primary"
+        [ngClass]="{ active: translate.currentLang === 'en' }"
+>
+  EN
+    </button>
+</mat-toolbar>
