@@ -7,7 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute} from '@angular/router';
 import { EmailValidator } from './../../validators/email-correct.validator';
 
-const REGISTER_MUTATION = gql`
+const mutateRegister = gql`
   mutation ($username: String!, $password: String!, $role: Int!) {
     register(username: $username, password: $password, role: $role ) {
       username
@@ -16,7 +16,7 @@ const REGISTER_MUTATION = gql`
     }
   }
 `;
-const LOGIN_MUTATION = gql`
+const mutateLogin = gql`
   mutation ($username: String!, $password: String!) {
     login(username: $username, password: $password) {
       username
@@ -48,7 +48,7 @@ export class AuthFormComponent implements OnInit {
   submit() {
     if (this.currentRoute === 'register') {
       this.apollo.mutate({
-        mutation: REGISTER_MUTATION,
+        mutation: mutateRegister,
         variables: {
           username: this.login.value,
           password: this.password.value,
@@ -58,7 +58,7 @@ export class AuthFormComponent implements OnInit {
     }
     else {
       this.apollo.mutate({
-        mutation: LOGIN_MUTATION,
+        mutation: mutateLogin,
         variables: {
           username: this.login.value,
           password: this.password.value,
