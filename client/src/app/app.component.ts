@@ -18,19 +18,19 @@ export class AppComponent implements OnInit {
   constructor(private apollo: Apollo, public translate: TranslateService) {}
 
   ngOnInit() {
-    // this.apollo
-    //   .watchQuery({
-    //     query: gql`
-    //       {
-    //         users {
-    //           username
-    //         }
-    //       }
-    //     `,
-    //   })
-    //   .valueChanges.subscribe((result) => {
-    //     // @ts-ignore
-    //     this.users = result.data && result.data.users;
-    //   });
+    this.apollo
+      .watchQuery({
+        query: gql`
+          {
+            users {
+              username
+            }
+          }
+        `,
+      })
+      .valueChanges.subscribe((result) => {
+        // @ts-ignore
+        this.users = result.data && result.data.users;
+      });
   }
 }

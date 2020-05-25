@@ -9,5 +9,7 @@
   "app.auth-form.email-required-error-message": "Электронная почта обязательна",
   "app.auth-form.password-required-error-message": "Пароль обязателен",
   "app.auth-form.password-min-length-error-message": "Пароль должен быть как минимум {{count}} символов",
-  "app.auth-form.password-max-length-error-message": "Пароль должен быть максимум {{count}} символов"
+  "app.auth-form.password-max-length-error-message": "Пароль должен быть максимум {{count}} символов",
+  "app.auth-form.login": "войти",
+  "app.auth-form.register": "зарегистрироваться"
 }

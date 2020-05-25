@@ -1,5 +1,7 @@
 <div class="background">
     <div class="modal">
+        <div *ngIf="currentRoute === 'login'" class="caption">{{ "app.auth-form.login" | translate }}</div>
+        <div *ngIf="currentRoute === 'register'" class="caption">{{ "app.auth-form.register" | translate }}</div>
         <form novalidate  class="form-control example-form" [formGroup]="userForm">
           <mat-form-field class="example-full-width form-field">
             <mat-label>{{ "app.auth-form.email-placeholder" | translate }}</mat-label>
@@ -31,7 +33,7 @@
 
             <div class='buttons-group'>
               <button (click)="submit()" mat-raised-button color="accent"> {{ "app.auth-form.submit" | translate }}</button>
-              <button mat-stroked-button color="warn">{{ "app.auth-form.cancel" | translate }} </button>
+              <button routerLink="/" mat-stroked-button color="warn">{{ "app.auth-form.cancel" | translate }} </button>
             </div>
         </form>
     </div>

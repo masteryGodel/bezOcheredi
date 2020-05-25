@@ -2,3 +2,15 @@
 .active {
   border: 1px solid red;
 }
+
+.links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.links a {
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: blue;
+}

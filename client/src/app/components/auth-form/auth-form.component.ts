@@ -1,7 +1,30 @@
+import { ROLES } from 'src/enums/roles';
+import gql from 'graphql-tag';
+import { Apollo } from 'apollo-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute} from '@angular/router';
 import { EmailValidator } from './../../validators/email-correct.validator';
+
+const REGISTER_MUTATION = gql`
+  mutation ($username: String!, $password: String!, $role: Int!) {
+    register(username: $username, password: $password, role: $role ) {
+      username
+      role
+      token
+    }
+  }
+`;
+const LOGIN_MUTATION = gql`
+  mutation ($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
+      username
+      role
+      token
+    }
+  }
+`;
 
 @Component({
   selector: 'app-auth-form',
@@ -13,15 +36,37 @@ export class AuthFormComponent implements OnInit {
   public password: FormControl;
   public userForm: FormGroup;
   public hide = true;
+  public currentRoute;
 
-  constructor(public translate: TranslateService) { }
+  constructor(private apollo: Apollo, public translate: TranslateService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.currentRoute = this.route.snapshot.url.join('');
     this.createFormsField();
     this.createFormGroup();
   }
   submit() {
-    console.log(this.userForm);
+    if (this.currentRoute === 'register') {
+      this.apollo.mutate({
+        mutation: REGISTER_MUTATION,
+        variables: {
+          username: this.login.value,
+          password: this.password.value,
+          role: ROLES.CLIENT
+        }
+      }).subscribe(item => console.log(item), error => console.log(error));
+    }
+    else {
+      this.apollo.mutate({
+        mutation: LOGIN_MUTATION,
+        variables: {
+          username: this.login.value,
+          password: this.password.value,
+          role: ROLES.CLIENT
+        }
+      }).subscribe(item => console.log(item), error => console.log(error));
+    }
+
   }
 
   private createFormsField() {

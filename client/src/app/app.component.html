@@ -22,4 +22,12 @@
   </div>
 </div>
 
-<app-auth-form></app-auth-form>
+<div class='links'>
+  <a routerLink="/register">{{ "app.auth-form.register" | translate }}</a>
+  <a routerLink="/login">{{ "app.auth-form.login" | translate }}</a>
+</div>
+
+<router-outlet>
+
+</router-outlet>
+
