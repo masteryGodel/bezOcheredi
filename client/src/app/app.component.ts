@@ -2,7 +2,6 @@ import { AuthService } from './services/auth.service';
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { distinctUntilChanged } from 'rxjs/operators';
-import gql from 'graphql-tag';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 

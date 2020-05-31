@@ -87,8 +87,8 @@ export class AuthFormComponent implements OnInit {
         })
         .subscribe(
           (result: any) => {
-            const id = result.data.register.id;
-            const token = result.data.register.token;
+            const id = result.data.login.id;
+            const token = result.data.login.token;
             this.authService.saveUserData(id, token);
             this.router.navigate(['/']);
           }, (error) => {console.log(error)}
