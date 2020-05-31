@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
-// import {BehaviorSubject} from 'rxjs';
+import { Observable } from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 import {GC_AUTH_TOKEN, GC_USER_ID} from './constants';
 
 // 1
@@ -14,7 +14,7 @@ export class AuthService {
   }
 
   // Providing a observable to listen the authentication state
-  get isAuthenticated(): Observable<boolean> {
+  isAuthenticated(): Observable<any> {
     return this._isAuthenticated.asObservable();
   }
 
