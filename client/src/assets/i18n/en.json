@@ -11,6 +11,7 @@
   "app.auth-form.password-min-length-error-message": "Password must be {{count}} characters minimum",
   "app.auth-form.password-max-length-error-message": "Password must be at least {{count}} maximum",
   "app.auth-form.login": "login",
-  "app.auth-form.register": "register"
+  "app.auth-form.register": "register",
+  "app.auth-form.logout": "logout"
 }
 

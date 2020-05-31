@@ -11,5 +11,6 @@
   "app.auth-form.password-min-length-error-message": "Пароль должен быть как минимум {{count}} символов",
   "app.auth-form.password-max-length-error-message": "Пароль должен быть максимум {{count}} символов",
   "app.auth-form.login": "войти",
-  "app.auth-form.register": "зарегистрироваться"
+  "app.auth-form.register": "зарегистрироваться",
+  "app.auth-form.logout": "выйти"
 }

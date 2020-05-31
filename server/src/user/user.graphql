@@ -6,6 +6,7 @@ type User {
 }
 
 type Auth {
+  id: ID!
   username: String!
   token: String!
   role: Int!
