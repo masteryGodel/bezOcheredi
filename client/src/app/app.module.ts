@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -45,7 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatFormFieldModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 
 })
