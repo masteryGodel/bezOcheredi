@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {BehaviorSubject} from 'rxjs';
-import {AUTH_TOKEN, USER_ID} from './constants';
+import { BehaviorSubject } from 'rxjs';
+import { AUTH_TOKEN, USER_ID } from './constants';
 
 
 @Injectable()
@@ -11,7 +11,7 @@ export class AuthService {
   constructor() {
   }
 
-  isAuthenticated(): Observable<any> {
+  isAuthenticated(): Observable<boolean> {
     return this._isAuthenticated.asObservable();
   }
 

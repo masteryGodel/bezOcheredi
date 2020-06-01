@@ -19,20 +19,20 @@ interface User {
 export class AppComponent implements OnInit, OnDestroy {
   users: User[] = [];
   subscriptions: Subscription[] = [];
-  logged: boolean = false;
-  constructor(private apollo: Apollo, public translate: TranslateService, private authService: AuthService) {}
+  logged = false;
+  constructor(private apollo: Apollo, public translate: TranslateService, private authService: AuthService) { }
 
   ngOnInit() {
 
     const isAuthenticatedSubscription = this.authService.isAuthenticated()
-    .pipe(distinctUntilChanged())
-    .subscribe(isAuthenticated => {
-      this.logged = isAuthenticated
-    });
+      .pipe(distinctUntilChanged())
+      .subscribe(isAuthenticated => {
+        this.logged = isAuthenticated;
+      });
 
-  this.subscriptions = [...this.subscriptions, isAuthenticatedSubscription];
+    this.subscriptions = [...this.subscriptions, isAuthenticatedSubscription];
 
-  this.authService.autoLogin()
+    this.authService.autoLogin()
   }
 
   logout() {

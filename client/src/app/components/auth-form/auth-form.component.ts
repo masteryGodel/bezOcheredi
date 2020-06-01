@@ -1,14 +1,16 @@
 import { Apollo } from 'apollo-angular';
 import { TranslateService } from '@ngx-translate/core';
 import gql from 'graphql-tag';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 import { AuthService } from './../../services/auth.service';
 import { ROLES } from 'src/enums/roles';
 import { EmailValidator } from './../../validators/email-correct.validator';
+import { Subscription } from 'rxjs';
+import { pluck } from 'rxjs/operators';
 
 const mutateRegister = gql`
   mutation($username: String!, $password: String!, $role: Int!) {
@@ -31,16 +33,24 @@ const mutateLogin = gql`
     }
   }
 `;
+export interface UserData {
+  id: string;
+  role: number;
+  token: string;
+  username: string;
+}
+
 
 @Component({
   selector: 'app-auth-form',
   templateUrl: './auth-form.component.html',
   styleUrls: ['./auth-form.component.scss'],
 })
-export class AuthFormComponent implements OnInit {
+export class AuthFormComponent implements OnInit, OnDestroy {
   public login: FormControl;
   public password: FormControl;
   public userForm: FormGroup;
+  private rout$: Subscription;
   public hide = true;
   public currentRoute;
 
@@ -50,10 +60,10 @@ export class AuthFormComponent implements OnInit {
     public translate: TranslateService,
     private route: ActivatedRoute,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.currentRoute = this.route.snapshot.url.join('');
+    this.rout$ = this.route.params.subscribe(data => this.currentRoute = data.authModal);
     this.createFormsField();
     this.createFormGroup();
   }
@@ -68,12 +78,15 @@ export class AuthFormComponent implements OnInit {
             role: ROLES.CLIENT,
           },
         })
-        .subscribe((result: any) => {
-          const id = result.data.register.id;
-          const token = result.data.register.token;
+        .pipe(
+          pluck('data', 'register')
+        )
+        .subscribe((result: UserData) => {
+          const id = result.id;
+          const token = result.token;
           this.authService.saveUserData(id, token);
           this.router.navigate(['/']);
-        }, (error) => {console.log(error)}
+        }, (error) => { console.log(error); }
         );
     } else {
       this.apollo
@@ -85,13 +98,16 @@ export class AuthFormComponent implements OnInit {
             role: ROLES.CLIENT,
           },
         })
+        .pipe(
+          pluck('data', 'login')
+        )
         .subscribe(
-          (result: any) => {
-            const id = result.data.login.id;
-            const token = result.data.login.token;
+          (result: UserData) => {
+            const id = result.id;
+            const token = result.token;
             this.authService.saveUserData(id, token);
             this.router.navigate(['/']);
-          }, (error) => {console.log(error)}
+          }, (error) => { console.log(error); }
         );
     }
   }
@@ -112,5 +128,8 @@ export class AuthFormComponent implements OnInit {
       login: this.login,
       password: this.password,
     });
+  }
+  ngOnDestroy() {
+    if (this.rout$) { this.rout$.unsubscribe(); }
   }
 }
