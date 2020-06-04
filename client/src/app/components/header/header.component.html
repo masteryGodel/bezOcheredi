@@ -1,0 +1,49 @@
+<header>
+  <mat-toolbar class="app-header">
+    <div class="logo">
+      <a [routerLink]="['/']">
+        <img
+          src="../../../assets/images/logo.png"
+          alt="logo"
+          class="logo__image"
+        />
+      </a>
+    </div>
+    <nav class="navigation">
+      <ul>
+        <li>
+          <a
+            [routerLink]="['/companies']"
+            routerLinkActive="router-link-active"
+            class="navigation-link"
+            >{{ "app.header.companies-link" | translate }}
+          </a>
+          <a
+            [routerLink]="['/masters']"
+            routerLinkActive="router-link-active"
+            class="navigation-link"
+            >{{ "app.header.masters-link" | translate }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="buttons">
+      <button
+        (click)="translate.use('ru')"
+        mat-button
+        color="primary"
+        [ngClass]="{ active: translate.currentLang === 'ru' }"
+      >
+        RU
+      </button>
+      <button
+        (click)="translate.use('en')"
+        mat-button
+        color="primary"
+        [ngClass]="{ active: translate.currentLang === 'en' }"
+      >
+        EN
+      </button>
+    </div>
+  </mat-toolbar>
+</header>
