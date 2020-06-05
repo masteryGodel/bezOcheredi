@@ -1,3 +1,4 @@
+import { MaterialModule } from './material.module';
 import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GraphQLModule } from './graphql.module';
-import { AuthFormComponent } from './components/auth-form/auth-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -25,12 +25,13 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, AuthFormComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule,
+    MaterialModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
@@ -40,10 +41,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatInputModule,
-    MatIconModule,
-    MatFormFieldModule,
     ReactiveFormsModule
   ],
   providers: [AuthService],

@@ -1,10 +1,8 @@
-import { AuthFormComponent } from './components/auth-form/auth-form.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: ':authModal', component: AuthFormComponent },
+  { path: 'auth', loadChildren: () => import ('./pages/auth-page/auth-page.module').then(m => m.AuthPageModule)},
 ]
 
 

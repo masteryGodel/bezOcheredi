@@ -6,9 +6,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
-import { AuthService } from './../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { ROLES } from 'src/enums/roles';
-import { EmailValidator } from './../../validators/email-correct.validator';
+import { EmailValidator } from '../../validators/email-correct.validator';
 import { Subscription } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 
@@ -42,11 +42,11 @@ export interface UserData {
 
 
 @Component({
-  selector: 'app-auth-form',
-  templateUrl: './auth-form.component.html',
-  styleUrls: ['./auth-form.component.scss'],
+  selector: 'app-auth-page',
+  templateUrl: './auth-page.component.html',
+  styleUrls: ['./auth-page.component.scss'],
 })
-export class AuthFormComponent implements OnInit, OnDestroy {
+export class AuthPageComponent implements OnInit, OnDestroy {
   public login: FormControl;
   public password: FormControl;
   public userForm: FormGroup;
