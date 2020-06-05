@@ -1,8 +1,8 @@
 <div class="container">
 
     <mat-card >
-        <mat-card-subtitle class='caption'>{{ "app.auth-form.login" | translate }}</mat-card-subtitle>
-        <mat-card-subtitle *ngIf="currentRoute === 'register'" class="caption">{{ "app.auth-form.register" | translate }}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="isRegistered" class='caption'>{{ "app.auth-form.login" | translate }}</mat-card-subtitle>
+        <mat-card-subtitle  *ngIf="!isRegistered" class="caption">{{ "app.auth-form.register" | translate }}</mat-card-subtitle>
         <form novalidate  class="form-control example-form" [formGroup]="userForm">
           <mat-form-field class="example-full-width form-field">
             <mat-label>{{ "app.auth-form.email-placeholder" | translate }}</mat-label>
@@ -31,7 +31,7 @@
               {{ "app.auth-form.password-required-error-message" | translate }}
             </mat-error>
           </mat-form-field>
-
+          <mat-checkbox *ngIf="isRegistered" [formControl]="checkbox" class="example-margin">Not registered yet?</mat-checkbox>
             <div class='buttons-group'>
               <button (click)="submit()" mat-raised-button color="accent"> {{ "app.auth-form.submit" | translate }}</button>
               <button routerLink="/" mat-stroked-button color="warn">{{ "app.auth-form.cancel" | translate }} </button>

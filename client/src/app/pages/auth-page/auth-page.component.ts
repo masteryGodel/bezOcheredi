@@ -49,10 +49,12 @@ export interface UserData {
 export class AuthPageComponent implements OnInit, OnDestroy {
   public login: FormControl;
   public password: FormControl;
+  public checkbox: FormControl;
   public userForm: FormGroup;
   private rout$: Subscription;
   public hide = true;
   public currentRoute;
+  public isRegistered = true;
 
   constructor(
     private router: Router,
@@ -66,9 +68,10 @@ export class AuthPageComponent implements OnInit, OnDestroy {
     this.rout$ = this.route.params.subscribe(data => this.currentRoute = data.authModal);
     this.createFormsField();
     this.createFormGroup();
+    this.onCheckboxChanges();
   }
   submit() {
-    if (this.currentRoute === 'register') {
+    if (this.isRegistered) {
       this.apollo
         .mutate({
           mutation: mutateRegister,
@@ -122,6 +125,8 @@ export class AuthPageComponent implements OnInit, OnDestroy {
       Validators.minLength(6),
       Validators.maxLength(32),
     ]);
+    this.checkbox = new FormControl('', [
+    ]);
   }
   private createFormGroup() {
     this.userForm = new FormGroup({
@@ -129,6 +134,13 @@ export class AuthPageComponent implements OnInit, OnDestroy {
       password: this.password,
     });
   }
+
+  onCheckboxChanges() {
+    this.checkbox.valueChanges.subscribe(data => {
+    this.isRegistered = !data
+    });
+  }
+
   ngOnDestroy() {
     if (this.rout$) { this.rout$.unsubscribe(); }
   }
