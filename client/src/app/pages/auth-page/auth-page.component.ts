@@ -71,7 +71,7 @@ export class AuthPageComponent implements OnInit, OnDestroy {
     this.onCheckboxChanges();
   }
   submit() {
-    if (this.isRegistered) {
+    if (!this.isRegistered) {
       this.apollo
         .mutate({
           mutation: mutateRegister,
