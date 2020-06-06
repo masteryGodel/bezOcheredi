@@ -1,7 +1,10 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { AuthService } from './services/auth.service';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+
 
 
 export interface Card {
@@ -20,18 +23,34 @@ interface User {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-
-  cards: Card[] = [
-    { title: 'Company 1', category: 'Category 1', description: 'Description 1' },
-    { title: 'Company 2', category: 'Category 2', description: 'Description 2' },
-    { title: 'Company 3', category: 'Category 3', description: 'Description 3' }
-  ]
-
+export class AppComponent implements OnInit, OnDestroy {
   users: User[] = [];
-  constructor(private apollo: Apollo, public translate: TranslateService) { }
+  subscriptions: Subscription[] = [];
+  logged = false;
+  constructor(private apollo: Apollo, public translate: TranslateService, private authService: AuthService) { }
 
   ngOnInit() {
 
+    const isAuthenticatedSubscription = this.authService.isAuthenticated()
+      .pipe(distinctUntilChanged())
+      .subscribe(isAuthenticated => {
+        this.logged = isAuthenticated;
+      });
+
+    this.subscriptions = [...this.subscriptions, isAuthenticatedSubscription];
+
+    this.authService.autoLogin();
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
+  ngOnDestroy(): void {
+    for (const sub of this.subscriptions) {
+      if (sub && sub.unsubscribe) {
+        sub.unsubscribe();
+      }
+    }
   }
 }

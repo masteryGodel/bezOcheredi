@@ -3,5 +3,17 @@
   "app.app.value": "мир",
   "app.card.button": "забронировать",
   "app.header.companies-link": "Компании",
-  "app.header.masters-link": "Мастера"
+  "app.header.masters-link": "Мастера",
+  "app.auth-form.submit": "Войти",
+  "app.auth-form.cancel": "Отмена",
+  "app.auth-form.password-placeholder": "Введите ваш пароль",
+  "app.auth-form.email-placeholder": "Электронная почта",
+  "app.auth-form.email-error-message": "Пожалуйста, введите валидный адрес эл. почты",
+  "app.auth-form.email-required-error-message": "Электронная почта обязательна",
+  "app.auth-form.password-required-error-message": "Пароль обязателен",
+  "app.auth-form.password-min-length-error-message": "Пароль должен быть как минимум {{count}} символов",
+  "app.auth-form.password-max-length-error-message": "Пароль должен быть максимум {{count}} символов",
+  "app.auth-form.login": "войти",
+  "app.auth-form.register": "зарегистрироваться",
+  "app.auth-form.logout": "выйти"
 }

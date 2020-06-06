@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
@@ -12,8 +11,11 @@ const routes: Routes = [
   }, {
     path: 'masters',
     loadChildren: () => import('./pages/masters-page/masters-page.module').then(m => m.MastersPageModule)
-  }
+  }, {
+    path: 'auth', loadChildren: () => import('./pages/auth-page/auth-page.module').then(m => m.AuthPageModule)
+  },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
