@@ -50,9 +50,7 @@ export class UserService {
       throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
     }
     user = await this.userRepository.create(data);
-    console.log('ghgfhgfj', user)
     await this.userRepository.save(user);
-    console.log('SDD', user.toResponseObject())
     return user.toResponseObject();
   }
 }

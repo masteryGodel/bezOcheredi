@@ -51,7 +51,7 @@ export class AuthPageComponent implements OnInit, OnDestroy {
   public password: FormControl;
   public checkbox: FormControl;
   public userForm: FormGroup;
-  private rout$: Subscription;
+  private checkboxSubscription$: Subscription;
   public hide = true;
   public currentRoute;
   public isRegistered = true;
@@ -65,7 +65,6 @@ export class AuthPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.rout$ = this.route.params.subscribe(data => this.currentRoute = data.authModal);
     this.createFormsField();
     this.createFormGroup();
     this.onCheckboxChanges();
@@ -136,12 +135,12 @@ export class AuthPageComponent implements OnInit, OnDestroy {
   }
 
   onCheckboxChanges() {
-    this.checkbox.valueChanges.subscribe(data => {
+    this.checkboxSubscription$ = this.checkbox.valueChanges.subscribe(data => {
     this.isRegistered = !data
     });
   }
 
   ngOnDestroy() {
-    if (this.rout$) { this.rout$.unsubscribe(); }
+    if (this.checkboxSubscription$) { this.checkboxSubscription$.unsubscribe(); }
   }
 }
