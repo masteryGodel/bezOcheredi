@@ -1,17 +1,4 @@
 <app-header></app-header>
 
-<a *ngIf="!logged" routerLink="/auth">{{
-  "app.auth-form.login" | translate
-}}</a>
 
-<a *ngIf="!logged" routerLink="/auth">{{
-  "app.auth-form.login" | translate
-}}</a>
-<a *ngIf="logged" routerLink="" (click)="logout()">{{
-  "app.auth-form.logout" | translate
-}}</a>
-
-<a *ngIf="logged" routerLink="" (click)="logout()">{{
-  "app.auth-form.logout" | translate
-}}</a>
 <router-outlet> </router-outlet>

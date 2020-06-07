@@ -16,5 +16,6 @@
   "app.auth-form.login": "войти",
   "app.auth-form.register": "зарегистрироваться",
   "app.auth-form.logout": "выйти",
-  "app.auth-form.isRegistered": "Еще не зарегистрированы?"
+  "app.auth-form.isRegistered": "Еще не зарегистрированы?",
+  "app.auth-form.profile": "Профиль"
 }

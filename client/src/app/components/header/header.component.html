@@ -1,4 +1,4 @@
-<header  color="primary, A900">
+<header>
   <mat-toolbar class="app-header">
     <div class="logo">
       <a [routerLink]="['/']">
@@ -28,22 +28,29 @@
       </ul>
     </nav>
     <div class="buttons">
-      <button
-        (click)="translate.use('ru')"
-        mat-button
-        color="primary"
-        [ngClass]="{ active: translate.currentLang === 'ru' }"
-      >
-        RU
+      <button mat-button [matMenuTriggerFor]="menu">
+        {{ translate.currentLang }}
       </button>
-      <button
-        (click)="translate.use('en')"
-        mat-button
-        color="primary"
-        [ngClass]="{ active: translate.currentLang === 'en' }"
-      >
-        EN
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="changeLang()">
+          {{ translate.currentLang === "en" ? "ru" : "en" }}
+        </button>
+      </mat-menu>
+      <button mat-button *ngIf="!logged" routerLink="/auth">
+        {{ "app.auth-form.login" | translate }}
       </button>
+
+      <button *ngIf="logged" mat-button [matMenuTriggerFor]="profile">
+        userName
+      </button>
+      <mat-menu #profile="matMenu" class="dropdown-menu" yPosition="below">
+        <button mat-menu-item  routerLink="" [routerLink]="['/user-profile']">
+          {{ "app.auth-form.profile" | translate }}
+        </button>
+        <button mat-menu-item routerLink="" (click)="logout()">
+          {{ "app.auth-form.logout" | translate }}
+        </button>
+      </mat-menu>
     </div>
   </mat-toolbar>
 </header>

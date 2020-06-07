@@ -5,9 +5,30 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 import { NgModule } from '@angular/core';
 @NgModule({
-  imports: [MatButtonModule, MatInputModule, MatIconModule, MatFormFieldModule, MatCardModule, MatCheckboxModule, MatToolbarModule],
-  exports: [MatButtonModule, MatInputModule, MatIconModule, MatFormFieldModule, MatCardModule, MatCheckboxModule, MatToolbarModule],
+
+  imports: [
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatMenuModule,
+  ],
+
+  exports: [
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatMenuModule,
+  ],
 })
 export class MaterialModule { }

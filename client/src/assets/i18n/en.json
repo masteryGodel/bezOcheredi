@@ -16,6 +16,7 @@
   "app.auth-form.login": "login",
   "app.auth-form.register": "register",
   "app.auth-form.logout": "logout",
-  "app.auth-form.isRegistered": "Not registered yet?"
+  "app.auth-form.isRegistered": "Not registered yet?",
+  "app.auth-form.profile": "Profile"
 }
 

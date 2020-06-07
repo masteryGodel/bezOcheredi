@@ -1,6 +1,7 @@
 .app-header {
   display: flex;
   justify-content: space-between;
+
 }
 
 .active {
@@ -23,8 +24,14 @@
   margin-right: 10px;
   text-decoration: none;
   color: black;
+  &:hover{
+    border-bottom: 2px solid black;
+  }
 }
 
 .router-link-active {
   border-bottom: 2px solid black;
+}
+.dropdown-menu{
+
 }

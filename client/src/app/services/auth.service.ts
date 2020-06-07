@@ -21,7 +21,6 @@ export class AuthService {
   }
 
   saveUserData(id: string, token: string) {
-
     localStorage.setItem(USER_ID, id);
     localStorage.setItem(AUTH_TOKEN, token);
     this.setUserId(id);
