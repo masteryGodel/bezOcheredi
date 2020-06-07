@@ -41,7 +41,6 @@ export class UserEntity {
   }
 
   toResponseObject(showToken: boolean = true): UserRO {
-    console.log('HHH', this.token)
     const { id, created, username, token, role } = this;
     const responseObject: UserRO = {
       id,
