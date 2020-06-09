@@ -8,27 +8,6 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
   constructor(private apollo: Apollo) {}
-  mutateRegister = gql`
-    mutation($username: String!, $password: String!, $role: Int!) {
-      register(username: $username, password: $password, role: $role) {
-        id
-        username
-        role
-        token
-      }
-    }
-  `;
-  mutateLogin = gql`
-    mutation($username: String!, $password: String!) {
-      login(username: $username, password: $password) {
-        id
-        username
-        role
-        token
-      }
-    }
-  `;
-
   public register(username: string, password: string) {
     return this.apollo
       .mutate({
