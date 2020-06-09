@@ -1,15 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
-
-
-
-export interface Card {
-  title: string;
-  category: string;
-  description: string;
-}
-
-
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
