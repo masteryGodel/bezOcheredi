@@ -43,7 +43,7 @@
       <button *ngIf="logged" mat-button [matMenuTriggerFor]="profile">
         userName
       </button>
-      <mat-menu #profile="matMenu" class="dropdown-menu" yPosition="below">
+      <mat-menu #profile="matMenu" yPosition="below">
         <button mat-menu-item  routerLink="" [routerLink]="['/user-profile']">
           {{ "app.auth-form.profile" | translate }}
         </button>
