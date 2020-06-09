@@ -3,18 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import {UserData} from '../../types';
 import { AuthService } from '../../services/auth.service';
 import { EmailValidator } from '../../validators/email-correct.validator';
 import { Subscription } from 'rxjs';
 
-
-export interface UserData {
-  id: string;
-  role: number;
-  token: string;
-  username: string;
-}
 
 @Component({
   selector: 'app-auth-page',
@@ -26,29 +19,28 @@ export class AuthPageComponent implements OnInit, OnDestroy {
   public password: FormControl;
   public checkbox: FormControl;
   public userForm: FormGroup;
-  private checkboxSubscription$: Subscription;
   public hide = true;
   public isRegistered = true;
+  private checkboxSubscription$: Subscription;
 
   constructor(
-    private router: Router,
     public translate: TranslateService,
+    private router: Router,
     private authService: AuthService,
     private apiService: ApiService
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.createFormsField();
     this.createFormGroup();
     this.onCheckboxChanges();
   }
-  submit() {
+  public submit(): void {
     if (!this.isRegistered) {
       this.apiService.register(this.login.value, this.password.value)
       .subscribe(
         (result: UserData) => {
-          const id = result.id;
-          const token = result.token;
+          const {id, token} = result;
           this.authService.saveUserData(id, token);
           this.router.navigate(['/']);
         },
@@ -91,7 +83,7 @@ export class AuthPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  onCheckboxChanges() {
+  public onCheckboxChanges(): void {
     this.checkboxSubscription$ = this.checkbox.valueChanges.subscribe(
       (data) => {
         this.isRegistered = !data;
@@ -99,7 +91,7 @@ export class AuthPageComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy() {
+   ngOnDestroy() {
     if (this.checkboxSubscription$) {
       this.checkboxSubscription$.unsubscribe();
     }
