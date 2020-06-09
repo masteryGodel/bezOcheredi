@@ -1,49 +1,41 @@
 import { AuthService } from './services/auth.service';
-import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-
-
-
-interface User {
-  username?: string;
-}
+import { SubscriptionDestroyer } from './components/subscriptionDestroyer';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, OnDestroy {
-  users: User[] = [];
-  subscriptions: Subscription[] = [];
-  logged = false;
-  constructor(private apollo: Apollo, public translate: TranslateService, private authService: AuthService) { }
-
+export class AppComponent extends SubscriptionDestroyer
+  implements OnInit, OnDestroy {
+  public logged = false;
+  constructor(
+    private apollo: Apollo,
+    public translate: TranslateService,
+    private authService: AuthService
+  ) {
+    super();
+  }
   ngOnInit() {
-
-    const isAuthenticatedSubscription = this.authService.isAuthenticated()
-      .pipe(distinctUntilChanged())
-      .subscribe(isAuthenticated => {
+    this.authService
+      .isAuthenticated()
+      .pipe(distinctUntilChanged(), takeUntil(this.destroy$))
+      .subscribe((isAuthenticated) => {
         this.logged = isAuthenticated;
       });
-
-    this.subscriptions = [...this.subscriptions, isAuthenticatedSubscription];
-
-    this.authService.autoLogin()
+    this.authService.autoLogin();
   }
 
-  logout() {
+  public logout(): void {
     this.authService.logout();
   }
 
   ngOnDestroy(): void {
-    for (let sub of this.subscriptions) {
-      if (sub && sub.unsubscribe) {
-        sub.unsubscribe();
-      }
-    }
+    this.destroy$.next(true);
   }
 }

@@ -1,45 +1,20 @@
-import { Apollo } from 'apollo-angular';
+import { ApiService } from './../../services/api.service';
 import { TranslateService } from '@ngx-translate/core';
-import gql from 'graphql-tag';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
-import { ROLES } from 'src/enums/roles';
 import { EmailValidator } from '../../validators/email-correct.validator';
 import { Subscription } from 'rxjs';
-import { pluck } from 'rxjs/operators';
 
-const mutateRegister = gql`
-  mutation($username: String!, $password: String!, $role: Int!) {
-    register(username: $username, password: $password, role: $role) {
-      id
-      username
-      role
-      token
 
-    }
-  }
-`;
-const mutateLogin = gql`
-  mutation($username: String!, $password: String!) {
-    login(username: $username, password: $password) {
-      id
-      username
-      role
-      token
-    }
-  }
-`;
 export interface UserData {
   id: string;
   role: number;
   token: string;
   username: string;
 }
-
 
 @Component({
   selector: 'app-auth-page',
@@ -53,16 +28,14 @@ export class AuthPageComponent implements OnInit, OnDestroy {
   public userForm: FormGroup;
   private checkboxSubscription$: Subscription;
   public hide = true;
-  public currentRoute;
   public isRegistered = true;
 
   constructor(
     private router: Router,
-    private apollo: Apollo,
     public translate: TranslateService,
-    private route: ActivatedRoute,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private apiService: ApiService
+  ) {}
 
   ngOnInit(): void {
     this.createFormsField();
@@ -71,45 +44,30 @@ export class AuthPageComponent implements OnInit, OnDestroy {
   }
   submit() {
     if (!this.isRegistered) {
-      this.apollo
-        .mutate({
-          mutation: mutateRegister,
-          variables: {
-            username: this.login.value,
-            password: this.password.value,
-            role: ROLES.CLIENT,
-          },
-        })
-        .pipe(
-          pluck('data', 'register')
-        )
-        .subscribe((result: UserData) => {
+      this.apiService.register(this.login.value, this.password.value)
+      .subscribe(
+        (result: UserData) => {
           const id = result.id;
           const token = result.token;
           this.authService.saveUserData(id, token);
           this.router.navigate(['/']);
-        }, (error) => { console.log(error); }
-        );
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     } else {
-      this.apollo
-        .mutate({
-          mutation: mutateLogin,
-          variables: {
-            username: this.login.value,
-            password: this.password.value,
-            role: ROLES.CLIENT,
-          },
-        })
-        .pipe(
-          pluck('data', 'login')
-        )
+      this.apiService.login(this.login.value, this.password.value)
         .subscribe(
           (result: UserData) => {
             const id = result.id;
             const token = result.token;
             this.authService.saveUserData(id, token);
             this.router.navigate(['/']);
-          }, (error) => { console.log(error); }
+          },
+          (error) => {
+            console.log(error);
+          }
         );
     }
   }
@@ -124,8 +82,7 @@ export class AuthPageComponent implements OnInit, OnDestroy {
       Validators.minLength(6),
       Validators.maxLength(32),
     ]);
-    this.checkbox = new FormControl('', [
-    ]);
+    this.checkbox = new FormControl('', []);
   }
   private createFormGroup() {
     this.userForm = new FormGroup({
@@ -135,12 +92,16 @@ export class AuthPageComponent implements OnInit, OnDestroy {
   }
 
   onCheckboxChanges() {
-    this.checkboxSubscription$ = this.checkbox.valueChanges.subscribe(data => {
-    this.isRegistered = !data
-    });
+    this.checkboxSubscription$ = this.checkbox.valueChanges.subscribe(
+      (data) => {
+        this.isRegistered = !data;
+      }
+    );
   }
 
   ngOnDestroy() {
-    if (this.checkboxSubscription$) { this.checkboxSubscription$.unsubscribe(); }
+    if (this.checkboxSubscription$) {
+      this.checkboxSubscription$.unsubscribe();
+    }
   }
 }
