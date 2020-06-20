@@ -1,12 +1,17 @@
+import { AUTH_TOKEN } from './services/constants';
 import { NgModule } from '@angular/core';
 import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { environment } from '../environments/environment';
+import { HttpHeaders } from '@angular/common/http';
 
 export function createApollo(httpLink: HttpLink) {
+  const token = localStorage.getItem(AUTH_TOKEN);
+  const authorization = token ? `Bearer ${token}` : null;
+  const headers = new HttpHeaders().append('Authorization', authorization);
   return {
-    link: httpLink.create({ uri: environment.baseUri }),
+    link: httpLink.create({ uri: environment.baseUri, headers }),
     cache: new InMemoryCache(),
   };
 }
@@ -21,4 +26,4 @@ export function createApollo(httpLink: HttpLink) {
     },
   ],
 })
-export class GraphQLModule {}
+export class GraphQLModule { }

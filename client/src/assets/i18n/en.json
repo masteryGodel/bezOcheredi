@@ -1,4 +1,18 @@
 {
   "app.app.title": "hello {{value}}",
-  "app.app.value": "world"
+  "app.app.value": "world",
+  "app.auth-form.submit": "Submit",
+  "app.auth-form.cancel": "Cancel",
+  "app.auth-form.password-placeholder": "Enter your password",
+  "app.auth-form.email-placeholder": "Email",
+  "app.auth-form.email-error-message": "Please enter a valid email address",
+  "app.auth-form.email-required-error-message": "Email is required",
+  "app.auth-form.password-required-error-message": "Password is required",
+  "app.auth-form.password-min-length-error-message": "Password must be {{count}} characters minimum",
+  "app.auth-form.password-max-length-error-message": "Password must be at least {{count}} maximum",
+  "app.auth-form.login": "login",
+  "app.auth-form.register": "register",
+  "app.auth-form.logout": "logout",
+  "app.auth-form.isRegistered": "Not registered yet?"
 }
+

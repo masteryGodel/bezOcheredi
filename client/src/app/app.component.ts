@@ -1,36 +1,41 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { AuthService } from './services/auth.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-
-
-interface User {
-  username?: string;
-}
+import { Subscription } from 'rxjs';
+import { SubscriptionDestroyer } from './components/subscriptionDestroyer';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  users: User[] = [];
-  constructor(private apollo: Apollo, public translate: TranslateService) {}
-
+export class AppComponent extends SubscriptionDestroyer
+  implements OnInit, OnDestroy {
+  public logged = false;
+  constructor(
+    private apollo: Apollo,
+    public translate: TranslateService,
+    private authService: AuthService
+  ) {
+    super();
+  }
   ngOnInit() {
-    this.apollo
-      .watchQuery({
-        query: gql`
-          {
-            users {
-              username
-            }
-          }
-        `,
-      })
-      .valueChanges.subscribe((result) => {
-        // @ts-ignore
-        this.users = result.data && result.data.users;
+    this.authService
+      .isAuthenticated()
+      .pipe(distinctUntilChanged(), takeUntil(this.destroy$))
+      .subscribe((isAuthenticated) => {
+        this.logged = isAuthenticated;
       });
+    this.authService.autoLogin();
+  }
+
+  public logout(): void {
+    this.authService.logout();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
   }
 }

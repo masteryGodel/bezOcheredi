@@ -25,7 +25,6 @@ $client-theme: mat-light-theme($client-primary, $client-accent, $client-warn);
 // that you are using.
 @include angular-material-theme($client-theme);
 
-/* You can add global styles to this file, and also import other style files */
 
 html,
 body {
@@ -35,3 +34,4 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+

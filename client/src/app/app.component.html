@@ -1,6 +1,6 @@
-<h1>
-  {{ "app.app.title" | translate: { value: "app.app.value" | translate } }}
-</h1>
+
+<a *ngIf="!logged" routerLink="/auth">{{ "app.auth-form.login" | translate }}</a>
+<a *ngIf="logged" routerLink="" (click)="logout()">{{ "app.auth-form.logout" | translate }}</a>
 <button
   (click)="translate.use('ru')"
   mat-button color="primary"
@@ -15,10 +15,7 @@
 >
   EN
 </button>
+<router-outlet>
 
-<div *ngIf="users">
-  <div *ngFor="let user of users">
-    <p>{{ user.username }}</p>
-  </div>
-</div>
+</router-outlet>
 
