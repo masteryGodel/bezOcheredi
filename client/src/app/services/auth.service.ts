@@ -6,34 +6,34 @@ import { AUTH_TOKEN, USER_ID } from './constants';
 
 @Injectable()
 export class AuthService {
-  private userId: string = null;
-  private _isAuthenticated = new BehaviorSubject(false);
+  private userId = '';
+  private isUserAuthenticated = new BehaviorSubject(false);
   constructor() {
   }
 
-  isAuthenticated(): Observable<boolean> {
-    return this._isAuthenticated.asObservable();
+  public isAuthenticated(): Observable<boolean> {
+    return this.isUserAuthenticated.asObservable();
   }
 
-  setUserId(id: string) {
+  public setUserId(id: string): void {
     this.userId = id;
-    this._isAuthenticated.next(true);
+    this.isUserAuthenticated.next(true);
   }
 
-  saveUserData(id: string, token: string) {
+  public saveUserData(id: string, token: string): void {
     localStorage.setItem(USER_ID, id);
     localStorage.setItem(AUTH_TOKEN, token);
     this.setUserId(id);
   }
 
-  logout() {
+  public logout(): void {
     localStorage.removeItem(USER_ID);
     localStorage.removeItem(AUTH_TOKEN);
     this.userId = null;
-    this._isAuthenticated.next(false);
+    this.isUserAuthenticated.next(false);
   }
 
-  autoLogin() {
+  public autoLogin(): void {
     const id = localStorage.getItem(USER_ID);
     if (id) {
       this.setUserId(id);
