@@ -1,21 +1,4 @@
+<app-header></app-header>
 
-<a *ngIf="!logged" routerLink="/auth">{{ "app.auth-form.login" | translate }}</a>
-<a *ngIf="logged" routerLink="" (click)="logout()">{{ "app.auth-form.logout" | translate }}</a>
-<button
-  (click)="translate.use('ru')"
-  mat-button color="primary"
-  [ngClass]="{ active: translate.currentLang === 'ru' }"
->
-  RU
-</button>
-<button
-  (click)="translate.use('en')"
-  mat-button color="primary"
-  [ngClass]="{ active: translate.currentLang === 'en' }"
->
-  EN
-</button>
-<router-outlet>
 
-</router-outlet>
-
+<router-outlet> </router-outlet>

@@ -8,7 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 export function createApollo(httpLink: HttpLink) {
   const token = localStorage.getItem(AUTH_TOKEN);
-  const authorization = token ? `Bearer ${token}` : null;
+  const authorization = token ? `Bearer ${token}` : '';
   const headers = new HttpHeaders().append('Authorization', authorization);
   return {
     link: httpLink.create({ uri: environment.baseUri, headers }),

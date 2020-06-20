@@ -1,6 +1,9 @@
 {
   "app.app.title": "Привет {{value}}",
   "app.app.value": "мир",
+  "app.card.button": "забронировать",
+  "app.header.companies-link": "Компании",
+  "app.header.masters-link": "Мастера",
   "app.auth-form.submit": "Войти",
   "app.auth-form.cancel": "Отмена",
   "app.auth-form.password-placeholder": "Введите ваш пароль",
@@ -13,5 +16,6 @@
   "app.auth-form.login": "войти",
   "app.auth-form.register": "зарегистрироваться",
   "app.auth-form.logout": "выйти",
-  "app.auth-form.isRegistered": "Еще не зарегистрированы?"
+  "app.auth-form.isRegistered": "Еще не зарегистрированы?",
+  "app.auth-form.profile": "Профиль"
 }

@@ -1,6 +1,9 @@
 {
   "app.app.title": "hello {{value}}",
   "app.app.value": "world",
+  "app.card.button": "book",
+  "app.header.companies-link": "Companies",
+  "app.header.masters-link": "Masters",
   "app.auth-form.submit": "Submit",
   "app.auth-form.cancel": "Cancel",
   "app.auth-form.password-placeholder": "Enter your password",
@@ -13,6 +16,7 @@
   "app.auth-form.login": "login",
   "app.auth-form.register": "register",
   "app.auth-form.logout": "logout",
-  "app.auth-form.isRegistered": "Not registered yet?"
+  "app.auth-form.isRegistered": "Not registered yet?",
+  "app.auth-form.profile": "Profile"
 }
 

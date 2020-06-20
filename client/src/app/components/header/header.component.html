@@ -1,0 +1,56 @@
+<header>
+  <mat-toolbar class="app-header">
+    <div class="logo">
+      <a [routerLink]="['/']">
+        <img
+          src="../../../assets/images/logo.png"
+          alt="logo"
+          class="logo__image"
+        />
+      </a>
+    </div>
+    <nav class="navigation">
+      <ul>
+        <li>
+          <a
+            [routerLink]="['/companies']"
+            routerLinkActive="router-link-active"
+            class="navigation-link"
+            >{{ "app.header.companies-link" | translate }}
+          </a>
+          <a
+            [routerLink]="['/masters']"
+            routerLinkActive="router-link-active"
+            class="navigation-link"
+            >{{ "app.header.masters-link" | translate }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="buttons">
+      <button mat-button [matMenuTriggerFor]="menu">
+        {{ translate.currentLang }}
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="changeLang()">
+          {{ translate.currentLang === "en" ? "ru" : "en" }}
+        </button>
+      </mat-menu>
+      <button mat-button *ngIf="!logged" routerLink="/auth">
+        {{ "app.auth-form.login" | translate }}
+      </button>
+
+      <button *ngIf="logged" mat-button [matMenuTriggerFor]="profile">
+        userName
+      </button>
+      <mat-menu #profile="matMenu" yPosition="below">
+        <button mat-menu-item  routerLink="" [routerLink]="['/user-profile']">
+          {{ "app.auth-form.profile" | translate }}
+        </button>
+        <button mat-menu-item routerLink="" (click)="logout()">
+          {{ "app.auth-form.logout" | translate }}
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</header>
