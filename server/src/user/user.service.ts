@@ -11,9 +11,9 @@ export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
-  ) { }
+  ) {}
 
-  async showAll(page: number = 1) {
+  async getAll(page: number = 1) {
     const users = await this.userRepository.find({
       take: 25,
       skip: 25 * (page - 1),
@@ -21,7 +21,7 @@ export class UserService {
     return users.map(user => user.toResponseObject(false));
   }
 
-  async read(username: string) {
+  async getOne(username: string) {
     const user = await this.userRepository.findOne({
       where: { username },
     });
@@ -43,7 +43,7 @@ export class UserService {
   async register(data: UserDTO) {
     const { username, role } = data;
     if (role === ROLES.ADMIN) {
-      throw new HttpException('Permission denied', HttpStatus.UNAUTHORIZED)
+      throw new HttpException('Permission denied', HttpStatus.UNAUTHORIZED);
     }
     let user = await this.userRepository.findOne({ where: { username } });
     if (user) {

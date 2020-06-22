@@ -21,6 +21,7 @@ services:
       - client
 
   client:
+    container_name: client
     build:
       context: ./client/
       target: development
