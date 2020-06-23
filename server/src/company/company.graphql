@@ -1,0 +1,16 @@
+type Company {
+  id: ID!
+  name: String!
+  created: Date!
+}
+
+type Query {
+  companies(page: Int): [Company!]
+  company(name: String!): Company
+}
+
+type Mutation {
+  createCompany(name: String!): Company
+  updateCompany(id: String!, name: String!): Company
+  deleteCompany(id: String!): Company
+}

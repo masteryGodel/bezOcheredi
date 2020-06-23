@@ -1,38 +1,29 @@
-import {
-  Resolver,
-  Query,
-  Args,
-  ResolveProperty,
-  Parent,
-  Mutation,
-  Context,
-} from '@nestjs/graphql';
+import { Resolver, Query, Args, Mutation, Context } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 
 import { AuthGuard } from '../shared/auth.gaurd';
 import { UserService } from './user.service';
 import { UserDTO } from './user.dto';
-import { ROLES } from 'src/enums/roles';
 
 @Resolver()
 export class UserResolver {
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   @Query()
   async users(@Args('page') page: number) {
-    return await this.userService.showAll(page);
+    return await this.userService.getAll(page);
   }
 
   @Query()
   async user(@Args('username') username: string) {
-    return await this.userService.read(username);
+    return await this.userService.getOne(username);
   }
 
   @Query()
   @UseGuards(new AuthGuard())
   async whoami(@Context('user') user) {
     const { username } = user;
-    return await this.userService.read(username);
+    return await this.userService.getOne(username);
   }
 
   @Mutation()
