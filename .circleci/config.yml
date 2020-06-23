@@ -9,10 +9,8 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: cd server && yarn install
-            - run: cd server && yarn test
-            - run: cd client && yarn install
-            - run: cd client && yarn test
+            - run: cd server && yarn install && yarn test
+            - run: cd client && yarn install && yarn test
 workflows:
     build-and-test:
       jobs:
